@@ -94,15 +94,32 @@
         </div>
     </form>
 
-    <div align="center">
-        <h4>Name:</h4>
-        {% for obj in filter.qs %}
-        <li>
-        <a href="{% url 'RSR:detail' obj.pk %}">{{obj.name}}</a>
-        </li>
-        {% endfor %}
-    </div>
-
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>School</th>
+        <th>Major</th>
+        <th>GPA</th>
+        <th>Skills</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for obj in filter.qs %}
+        <tr>
+          <td><a href="{% url 'RSR:detail' obj.pk %}">{{obj.name}}</a></td>
+          <td>{{ obj.school }}</td>
+          <td>{{ obj.major }}</td>
+          <td>{{ obj.gpa }}</td>
+          <td>{{ obj.skills }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5">No data</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </body>
 
 
